@@ -1,0 +1,12 @@
+<p>favorites works!</p>
+@if (favoritesIds$ | async; as jobsIds) { @if (jobsIds?.length) {
+<p>we have favorites: {{ jobsIds | json }}</p>
+} @else {
+<ng-template [ngTemplateOutlet]="withoutData" />
+} } @else {
+<ng-template [ngTemplateOutlet]="withoutData" />
+}
+
+<ng-template #withoutData>
+  <p>we DON'T have favorites</p>
+</ng-template>

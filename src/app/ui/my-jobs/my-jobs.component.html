@@ -1,0 +1,6 @@
+<p>
+  my-jobs works!
+</p>
+@if (favoritesIds$ | async; as jobsIds) {
+  <p>we have favorites: {{jobsIds | json}} </p>
+}
