@@ -2,13 +2,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit, Input as RouteParams, } from '@angular/core';
 import { Job } from '../../models';
 import { catchError, EMPTY, tap } from 'rxjs';
+import { CommonModule, Location } from '@angular/common';
 
 @Component({
   selector: 'job-details',
   templateUrl: './job-details.component.html',
   styleUrls: ['./job-details.component.css'],
   standalone: true,
-  imports: [HttpClientModule]
+  imports: [HttpClientModule, CommonModule]
 })
 export class JobDetailsComponent implements OnInit {
 
@@ -16,7 +17,8 @@ export class JobDetailsComponent implements OnInit {
   job!: Job;
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -33,5 +35,9 @@ export class JobDetailsComponent implements OnInit {
         return EMPTY;
       }),
     ).subscribe();
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

@@ -1,3 +1,12 @@
+<div (click)="goBack()" class="back"><span class="icon-home"  style="color: red" > </span>Back</div>
+<img src="{{ job.companyLogo }}" alt="{{ job.companyName }}" />
+<h3>Title: {{ job.title }}</h3>
+<p>Company: {{ job.companyName }}</p>
+<p>Reference: {{ job.reference }}</p>
+<p>PublishDate: {{ job.publishDate | date }}</p>
+<p>Location: {{ job.location }}</p>
+<p>Types: {{ job.types | json }}</p>
+<p>industries: {{ job.industries | json }}</p>
 
 @if (job && job.description !== undefined) {
   <div [innerHTML]="job.description"></div>
