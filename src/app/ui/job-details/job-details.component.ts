@@ -13,6 +13,7 @@ import { catchError, EMPTY, tap } from 'rxjs';
 export class JobDetailsComponent implements OnInit {
 
   @RouteParams() jobId = '';
+  job!: Job;
 
   constructor(
     private httpClient: HttpClient
@@ -27,6 +28,7 @@ export class JobDetailsComponent implements OnInit {
     .pipe(
       tap((jobsResponse: Job) => {
         console.table(jobsResponse);
+        this.job = jobsResponse;
       }),
       catchError(err => {
         console.table(err);
