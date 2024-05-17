@@ -27,11 +27,9 @@ export class JobDetailsComponent implements OnInit {
     this.httpClient.get<Job>('/jobs/'+this.jobId)
     .pipe(
       tap((jobsResponse: Job) => {
-        console.table(jobsResponse);
         this.job = jobsResponse;
       }),
-      catchError(err => {
-        console.table(err);
+      catchError(_err => {
         return EMPTY;
       }),
     ).subscribe();

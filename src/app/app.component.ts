@@ -2,6 +2,7 @@ import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavComponent } from './ui/core/nav/nav.component';
 import { JobsDataService } from './services/store/jobs-data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +16,13 @@ export class AppComponent implements OnInit {
 
   jobsDataService = inject(JobsDataService);
   readonly JOBS_ID_STORAGE_KEY = 'jobsIdFavorites';
+  private subscription: Subscription = new Subscription();
 
   ngOnInit() {
-    this.getLocatStorageData();
+    this.getLocalStorageData();
   }
 
-  getLocatStorageData() {
+  getLocalStorageData() {
     const items = localStorage.getItem(this.JOBS_ID_STORAGE_KEY);
     if (items && Array.isArray(JSON.parse(items))) {
       this.jobsDataService.setFavoritesIds(JSON.parse(items));
@@ -29,13 +31,17 @@ export class AppComponent implements OnInit {
 
   @HostListener('window:beforeunload', ['$event'])
   handleBeforeUnload(_event: any) {
-    this.jobsDataService
-      .getFavoritesIds()
-      .subscribe((jobsIdFavorites: string[] | null) => {
-        localStorage.setItem(
-          this.JOBS_ID_STORAGE_KEY,
-          JSON.stringify(jobsIdFavorites)
-        );
-      });
+    this.subscription.add(
+      this.jobsDataService
+        .getFavoritesIds()
+        .subscribe((jobsIdFavorites: string[] | null) => {
+          this.jobsDataService.setFavoritesIds([]);
+          localStorage.setItem(
+            this.JOBS_ID_STORAGE_KEY,
+            JSON.stringify(jobsIdFavorites)
+          );
+        })
+    );
+    this.subscription.unsubscribe();
   }
 }

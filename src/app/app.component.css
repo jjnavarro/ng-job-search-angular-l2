@@ -1,0 +1,14 @@
+.main {
+  padding-bottom: 72px;
+  padding-left: 72px;
+  padding-right: 72px;
+  color: #333;
+  header {
+    background-color: #f0f0f0;
+    color: #333;
+    border: none !important;
+    h1 {
+      text-align: center;
+    }
+  }
+}

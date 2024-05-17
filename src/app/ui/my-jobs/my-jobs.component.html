@@ -1,6 +1,9 @@
-<p>
-  my-jobs works!
-</p>
-@if (favoritesIds$ | async; as jobsIds) {
-  <p>we have favorites: {{jobsIds | json}} </p>
-}
+<div class="job-list">
+  @for (job of jobs; track $index) {
+  <job-row
+    [job]="job"
+    [isFavorite]="favoritesIds.includes(job.id.toString())"
+    (clickStarIcon)="addFavoriteJob(job.id.toString())"
+  />
+  }
+</div>

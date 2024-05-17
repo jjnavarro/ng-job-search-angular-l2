@@ -1,6 +1,14 @@
-<p>favorites works!</p>
 @if (favoritesIds$ | async; as jobsIds) { @if (jobsIds?.length) {
-<p>we have favorites: {{ jobsIds | json }}</p>
+<div class="job-list">
+  @for (job of jobs; track $index) { @if (jobsIds.includes(job.id.toString())) {
+  <job-row
+    [job]="job"
+    [isFavorite]="jobsIds.includes(job.id.toString())"
+    [showStar]="false"
+  />
+  } }
+</div>
+
 } @else {
 <ng-template [ngTemplateOutlet]="withoutData" />
 } } @else {
@@ -8,5 +16,5 @@
 }
 
 <ng-template #withoutData>
-  <p>we DON'T have favorites</p>
+  <p>No favorite selected</p>
 </ng-template>

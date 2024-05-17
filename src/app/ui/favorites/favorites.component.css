@@ -1,0 +1,9 @@
+.job-list {
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  text-align: center;
+  margin-top: 170px;
+}

@@ -1,6 +1,4 @@
-<p>
-  job-details works!
-</p>
-@if (job.description) {
+
+@if (job && job.description !== undefined) {
   <div [innerHTML]="job.description"></div>
 }

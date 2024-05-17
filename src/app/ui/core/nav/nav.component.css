@@ -1,0 +1,18 @@
+nav {
+  background-color: #f0f0f0;
+  border: none !important;
+  display: flex;
+  justify-content: space-between;
+  a {
+    width: 100%;
+    background-color: #f0f0f0;
+    color: #333;
+    height: 24px;
+    text-align: center;
+  }
+  a.activeLink {
+    color: #f0f0f0;
+    background-color: #333;
+    font-weight: bold;
+  }
+}

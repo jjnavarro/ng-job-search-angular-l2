@@ -1,0 +1,53 @@
+.job {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
+.job img {
+  width: 50px;
+  height: 50px;
+}
+
+.jobInfo {
+  display: flex;
+}
+
+.flexDisplay {
+  display: flex;
+}
+.jobDescription {
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  h3 {
+    font-size: 16px !important;
+    font-weight: bold;
+    margin: 0px !important;
+  }
+  h3:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  p {
+    font-size: 12px;
+    margin-left: 0px;
+  }
+}
+
+span.icon-star {
+  font-size: 24px;
+}
+
+span.icon-star:hover {
+  background-color: rgba(201, 201, 15, 0.849);
+  cursor: pointer;
+}
+
+.jobFavorite {
+  background-color: rgba(201, 201, 15, 0.849);
+}
