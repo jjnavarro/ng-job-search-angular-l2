@@ -1,13 +1,33 @@
-<div (click)="goBack()" class="back"><span class="icon-home"  style="color: red" > </span>Back</div>
-<img src="{{ job.companyLogo }}" alt="{{ job.companyName }}" />
-<h3>Title: {{ job.title }}</h3>
-<p>Company: {{ job.companyName }}</p>
-<p>Reference: {{ job.reference }}</p>
-<p>PublishDate: {{ job.publishDate | date }}</p>
-<p>Location: {{ job.location }}</p>
-<p>Types: {{ job.types | json }}</p>
-<p>industries: {{ job.industries | json }}</p>
+<div class="ml-8">
+  <div (click)="goBack()" class="back">
+    <span class="icon-home" style="color: red"> </span>Back
+  </div>
+  <div class="headTitleSection">
+    <img src="{{ job.companyLogo }}" alt="{{ job.companyName }}" />
+    <div>
+      <h3>{{ job.companyName }} - {{ job.title }}</h3>
+      <div class="tags">
+        @for (types of job.types; track $index) {
+        <p class="types">{{ types }}</p>
+        } @for (industries of job.industries; track $index) {
+        <p class="types" [innerHTML]="industries | sanitizeHtml"></p>
+        }
+      </div>
+    </div>
+  </div>
+  <p class="noMarginLeft">
+    <span class="text-bold">Publish date:</span>
+    {{ job.publishDate | date : "shortDate" }}
+  </p>
+  <p class="noMarginLeft">
+    <span class="text-bold">Location:</span> {{ job.location }}
+  </p>
+  <p class="noMarginLeft">
+    <span class="text-bold">Reference:</span> {{ job.reference }}
+  </p>
 
-@if (job && job.description !== undefined) {
-  <div [innerHTML]="job.description"></div>
-}
+  @if (job && job.description !== undefined) {
+  <span class="text-bold">Description:</span>
+  <div [innerHTML]="job.description | sanitizeHtml"></div>
+  }
+</div>

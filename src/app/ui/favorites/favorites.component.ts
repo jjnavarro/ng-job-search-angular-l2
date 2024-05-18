@@ -1,10 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { JobsDataService } from '../../services/store/jobs-data.service';
 import { CommonModule } from '@angular/common';
-import { JobRowComponent } from '../job-row/job-row.component';
-import { Job } from '../../models';
-import { catchError, EMPTY, of, switchMap, take, tap } from 'rxjs';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component, inject, OnInit } from '@angular/core';
+import { catchError, EMPTY, of, switchMap, take, tap } from 'rxjs';
+import { Job } from '../../models';
+import { JobsDataService } from '../../services/store/jobs-data.service';
+import { JobRowComponent } from '../job-row/job-row.component';
 
 @Component({
   selector: 'favorites',
@@ -24,6 +24,11 @@ export class FavoritesComponent implements OnInit {
     this.getJobs();
   }
 
+  /**
+   * Get jobs
+   * if the service doesn't data saved then we make http request and save the response
+   * if the service has data saved then we don't make a http request because recover and use data saved in service
+   */
   getJobs() {
     this.jobsDataService
       .getJobs()
@@ -40,7 +45,7 @@ export class FavoritesComponent implements OnInit {
             catchError((_err) => EMPTY)
           );
         }),
-        tap(jobs => {
+        tap((jobs) => {
           this.jobs = jobs;
         })
       )

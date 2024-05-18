@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
@@ -6,13 +6,6 @@ import { RouterLink, RouterModule } from '@angular/router';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css'],
   standalone: true,
-  imports: [RouterLink, RouterModule]
+  imports: [RouterLink, RouterModule],
 })
-export class NavComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class NavComponent {}

@@ -9,4 +9,4 @@ export interface Job {
   types?: string[];
   description?: string;
   publishDate?: string;
-};
+}

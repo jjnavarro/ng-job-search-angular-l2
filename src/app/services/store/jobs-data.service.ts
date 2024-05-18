@@ -6,19 +6,19 @@ import { Job } from '../../models';
   providedIn: 'root',
 })
 export class JobsDataService {
-  private favoritesId$: BehaviorSubject<string[] | null> =
-  new BehaviorSubject<string[] | null>(null);
+  private favoritesId$: BehaviorSubject<string[] | null> = new BehaviorSubject<
+    string[] | null
+  >(null);
 
-  private jobs$: BehaviorSubject<Job[] | null> =
-  new BehaviorSubject<Job[] | null>(null);
-
-  constructor() {}
+  private jobs$: BehaviorSubject<Job[] | null> = new BehaviorSubject<
+    Job[] | null
+  >(null);
 
   getFavoritesIds(): Observable<string[] | null> {
     return this.favoritesId$.asObservable();
   }
 
-  setFavoritesIds(favoritesIds: string[])  {
+  setFavoritesIds(favoritesIds: string[]) {
     this.favoritesId$.next(favoritesIds);
   }
 
@@ -26,7 +26,7 @@ export class JobsDataService {
     return this.jobs$.asObservable();
   }
 
-  setJobs(jobs: Job[])  {
+  setJobs(jobs: Job[]) {
     this.jobs$.next(jobs);
   }
 }

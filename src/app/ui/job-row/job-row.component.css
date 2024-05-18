@@ -29,7 +29,7 @@
     font-weight: bold;
     margin: 0px !important;
   }
-  h3:hover {
+  .isClickable:hover {
     text-decoration: underline;
     cursor: pointer;
   }

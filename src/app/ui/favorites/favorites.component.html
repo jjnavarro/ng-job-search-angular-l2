@@ -3,7 +3,7 @@
   @for (job of jobs; track $index) { @if (jobsIds.includes(job.id.toString())) {
   <job-row
     [job]="job"
-    [isFavorite]="jobsIds.includes(job.id.toString())"
+    [isFavorite]="true"
     [showStar]="false"
   />
   } }

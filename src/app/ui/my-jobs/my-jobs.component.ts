@@ -1,7 +1,6 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { JobsDataService } from '../../services/store/jobs-data.service';
+import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Job } from '../../models';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import {
   catchError,
   EMPTY,
@@ -11,7 +10,8 @@ import {
   take,
   tap,
 } from 'rxjs';
-import { CommonModule } from '@angular/common';
+import { Job } from '../../models';
+import { JobsDataService } from '../../services/store/jobs-data.service';
 import { JobRowComponent } from '../job-row/job-row.component';
 
 @Component({
@@ -38,6 +38,9 @@ export class MyJobsComponent implements OnInit, OnDestroy {
     this.subscription?.unsubscribe();
   }
 
+  /**
+   * Get array with favorite jobs IDs
+   */
   getFavoritesId() {
     this.subscription.add(
       this.jobsDataService
@@ -48,6 +51,11 @@ export class MyJobsComponent implements OnInit, OnDestroy {
     );
   }
 
+  /**
+   * Get jobs
+   * if the service doesn't data saved then we make http request and save the response
+   * if the service has data saved then we don't make a http request because recover and use data saved in service
+   */
   getJobs() {
     this.jobsDataService
       .getJobs()
@@ -64,13 +72,18 @@ export class MyJobsComponent implements OnInit, OnDestroy {
             catchError((_err) => EMPTY)
           );
         }),
-        tap(jobs => {
+        tap((jobs) => {
           this.jobs = jobs;
         })
       )
       .subscribe();
   }
 
+  /**
+   * Add favorite to favoriteId array
+   * If the ID exist in the array then we delete this job from favorite list
+   * If the ID NOT exist in the array we push this job to favorite list
+   */
   addFavoriteJob(id: string) {
     if (id === '') {
       return;
