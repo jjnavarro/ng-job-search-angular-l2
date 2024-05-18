@@ -29,7 +29,7 @@
     font-weight: bold;
     margin: 0px !important;
   }
-  .isClickable:hover {
+  h3:hover {
     text-decoration: underline;
     cursor: pointer;
   }
@@ -48,6 +48,6 @@ span.icon-star:hover {
   cursor: pointer;
 }
 
-.jobFavorite {
+.active {
   background-color: rgba(201, 201, 15, 0.849);
 }

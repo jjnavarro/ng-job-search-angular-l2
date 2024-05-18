@@ -23,9 +23,6 @@ export class JobRowComponent {
    * Routing to job detail page where we send job id as path param
    */
   goToDetail(id: number) {
-    if (!this.showStar) {
-      return;
-    }
     this.routing.navigate([`${RoutePaths.JOBS}/` + id]);
   }
 }

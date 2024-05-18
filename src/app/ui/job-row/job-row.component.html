@@ -2,7 +2,7 @@
   <div class="jobInfo">
     <img src="{{ job.companyLogo }}" alt="{{ job.companyName }}" />
     <div class="jobDescription">
-      <h3 [ngClass]="{ isClickable: showStar }" (click)="goToDetail(job.id)">
+      <h3 (click)="goToDetail(job.id)">
         {{ job.title }}
       </h3>
       <div class="flexDisplay">
@@ -13,8 +13,9 @@
   </div>
   @if (showStar) {
   <span
+    [id]="'star-'+job.id"
     class="icon-star"
-    [ngClass]="{ jobFavorite: isFavorite }"
+    [ngClass]="{ active: isFavorite }"
     (click)="clickStarIcon.emit()"
   ></span>
   }
